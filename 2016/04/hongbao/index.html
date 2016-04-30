@@ -4,22 +4,34 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>伈情的博客</title>
+    <title>中国移动517活动架构设计 | 伈情的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Nickid">
     
 
     
-    <meta name="description" content="技术分享">
-<meta property="og:type" content="website">
-<meta property="og:title" content="伈情的博客">
-<meta property="og:url" content="http://nickid.cn/index.html">
+    <meta name="description" content="技术架构
+基本设计思想：
+前端H5：a)  静态资源水平扩容到8台Nginx中b)  将活动页面上的所有可以静态的元素全部静态化，并尽量减少动态元素c)  将所有图片、样式、js脚本缓存至用户终端，页面采取懒加载模式
+奖券池独立拆分，提高性能：a)  采用多进程+单线程提高处理能力，将奖券池水平拆分到5台Redis内存数据库中，5台应用逻辑服务器单独对应各自的奖券池Redis，每台节点数据彼此隔离">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中国移动517活动架构设计">
+<meta property="og:url" content="http://nickid.cn/2016/04/hongbao/index.html">
 <meta property="og:site_name" content="伈情的博客">
-<meta property="og:description" content="技术分享">
+<meta property="og:description" content="技术架构
+基本设计思想：
+前端H5：a)  静态资源水平扩容到8台Nginx中b)  将活动页面上的所有可以静态的元素全部静态化，并尽量减少动态元素c)  将所有图片、样式、js脚本缓存至用户终端，页面采取懒加载模式
+奖券池独立拆分，提高性能：a)  采用多进程+单线程提高处理能力，将奖券池水平拆分到5台Redis内存数据库中，5台应用逻辑服务器单独对应各自的奖券池Redis，每台节点数据彼此隔离">
+<meta property="og:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png">
+<meta property="og:updated_time" content="2016-04-30T12:27:31.483Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="伈情的博客">
-<meta name="twitter:description" content="技术分享">
+<meta name="twitter:title" content="中国移动517活动架构设计">
+<meta name="twitter:description" content="技术架构
+基本设计思想：
+前端H5：a)  静态资源水平扩容到8台Nginx中b)  将活动页面上的所有可以静态的元素全部静态化，并尽量减少动态元素c)  将所有图片、样式、js脚本缓存至用户终端，页面采取懒加载模式
+奖券池独立拆分，提高性能：a)  采用多进程+单线程提高处理能力，将奖券池水平拆分到5台Redis内存数据库中，5台应用逻辑服务器单独对应各自的奖券池Redis，每台节点数据彼此隔离">
+<meta name="twitter:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png">
 
     
     <link rel="alternative" href="/atom.xml" title="伈情的博客" type="application/atom+xml">
@@ -72,12 +84,10 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2016/04/hongbao/" title="中国移动517活动架构设计" itemprop="url">中国移动517活动架构设计</a>
@@ -91,9 +101,16 @@
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p><img src="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png" alt="架构图"></p>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#技术架构"><span class="toc-number">1.</span> <span class="toc-text">技术架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本设计思想："><span class="toc-number">2.</span> <span class="toc-text">基本设计思想：</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p><img src="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png" alt="架构图"></p>
 <h2 id="基本设计思想："><a href="#基本设计思想：" class="headerlink" title="基本设计思想："></a>基本设计思想：</h2><ol>
 <li>前端H5：<br>a)  静态资源水平扩容到8台Nginx中<br>b)  将活动页面上的所有可以静态的元素全部静态化，并尽量减少动态元素<br>c)  将所有图片、样式、js脚本缓存至用户终端，页面采取懒加载模式</li>
 <li>奖券池独立拆分，提高性能：<br>a)  采用多进程+单线程提高处理能力，将奖券池水平拆分到5台Redis内存数据库中，5台应用逻辑服务器单独对应各自的奖券池Redis，每台节点数据彼此隔离。<br>b)  单个节点的处理能力为900TPS, 若拆分5个独立节点则集群的处理能力为4500TPS。</li>
@@ -101,14 +118,9 @@
 <li>处理超卖超中问题：<br>a)  用户个人信息为多线程处理，保证用户查询相应时间不超过10ms<br>b)  票池数据信息采用轻量级加锁，票池访问为多线程，票池修改采用加锁方式，当用户中奖时程序才进入加锁修改票池信息，用户未中奖情况下无加锁操作。</li>
 <li>WAF策略中心：<br>a)  按照IP+Session会话进行每秒请求量控制，大于一定阀值进行短时间拒绝。<br>b)  服务降级，当后台压力过大处理较慢时，开启限流模块，控制每秒请求量。</li>
 </ol>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
+  
+	</div>
+		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 
@@ -121,88 +133,47 @@
 
 
 
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://nickid.cn/2016/04/hongbao/" data-title="中国移动517活动架构设计 | 伈情的博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
 
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/04/hongbao/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/hongbao/" data-count-type="comments">&nbsp;</a>
-	
-</div>
 
 </footer>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/04/hello-world/" title="Hello World" itemprop="url">Hello World</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Nickid" target="_blank" itemprop="author">Nickid</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-27T08:42:53.472Z" itemprop="datePublished"> 发表于 2016-04-27</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
+   	       
+	</article>
 	
-	  	<span></span>
-		<a href="/2016/04/hello-world/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/04/hello-world/" data-count-type="comments">&nbsp;</a>
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/04/hello-world/"  title="Hello World">
+ <strong>下一篇：</strong><br/> 
+ <span>Hello World
+</span>
+</a>
+</div>
+
+</nav>
+
 	
-</div>
-
-</footer>
-
-
-    </article>
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/04/hongbao/" data-title="中国移动517活动架构设计" data-url="http://nickid.cn/2016/04/hongbao/"></div>
+</section>
 
 
-
-
-
-
-
-</div>
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#技术架构"><span class="toc-number">1.</span> <span class="toc-text">技术架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本设计思想："><span class="toc-number">2.</span> <span class="toc-text">基本设计思想：</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -340,14 +311,103 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
 
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"yunhaibin"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -423,4 +483,4 @@ $(document).ready(function(){
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
