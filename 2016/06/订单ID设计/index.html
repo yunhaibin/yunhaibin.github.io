@@ -4,34 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>中国移动517活动架构设计 | 伈情的博客</title>
+    <title>订单ID设计 | 伈情的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Nickid">
     
 
     
-    <meta name="description" content="技术架构
-基本设计思想：
-前端H5：a)  静态资源水平扩容到8台Nginx中b)  将活动页面上的所有可以静态的元素全部静态化，并尽量减少动态元素c)  将所有图片、样式、js脚本缓存至用户终端，页面采取懒加载模式
-奖券池独立拆分，提高性能：a)  采用多进程+单线程提高处理能力，将奖券池水平拆分到5台Redis内存数据库中，5台应用逻辑服务器单独对应各自的奖券池Redis，每台节点数据彼此隔离">
+    <meta name="description" content="订单ID生成规则设计1100000111110000001001101101000010011 00100110 00011010
+timestamp:1465896097469,timestampLeftShift:16,nextId:6825073419298304,workerId:38,sequence:0682507341929830425 11000001111110101111000">
 <meta property="og:type" content="article">
-<meta property="og:title" content="中国移动517活动架构设计">
-<meta property="og:url" content="http://nickid.cn/2016/04/hongbao/index.html">
+<meta property="og:title" content="订单ID设计">
+<meta property="og:url" content="http://nickid.cn/2016/06/订单ID设计/index.html">
 <meta property="og:site_name" content="伈情的博客">
-<meta property="og:description" content="技术架构
-基本设计思想：
-前端H5：a)  静态资源水平扩容到8台Nginx中b)  将活动页面上的所有可以静态的元素全部静态化，并尽量减少动态元素c)  将所有图片、样式、js脚本缓存至用户终端，页面采取懒加载模式
-奖券池独立拆分，提高性能：a)  采用多进程+单线程提高处理能力，将奖券池水平拆分到5台Redis内存数据库中，5台应用逻辑服务器单独对应各自的奖券池Redis，每台节点数据彼此隔离">
-<meta property="og:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png">
-<meta property="og:updated_time" content="2016-04-30T12:27:31.483Z">
+<meta property="og:description" content="订单ID生成规则设计1100000111110000001001101101000010011 00100110 00011010
+timestamp:1465896097469,timestampLeftShift:16,nextId:6825073419298304,workerId:38,sequence:0682507341929830425 11000001111110101111000">
+<meta property="og:updated_time" content="2016-06-15T03:21:56.144Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="中国移动517活动架构设计">
-<meta name="twitter:description" content="技术架构
-基本设计思想：
-前端H5：a)  静态资源水平扩容到8台Nginx中b)  将活动页面上的所有可以静态的元素全部静态化，并尽量减少动态元素c)  将所有图片、样式、js脚本缓存至用户终端，页面采取懒加载模式
-奖券池独立拆分，提高性能：a)  采用多进程+单线程提高处理能力，将奖券池水平拆分到5台Redis内存数据库中，5台应用逻辑服务器单独对应各自的奖券池Redis，每台节点数据彼此隔离">
-<meta name="twitter:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png">
+<meta name="twitter:title" content="订单ID设计">
+<meta name="twitter:description" content="订单ID生成规则设计1100000111110000001001101101000010011 00100110 00011010
+timestamp:1465896097469,timestampLeftShift:16,nextId:6825073419298304,workerId:38,sequence:0682507341929830425 11000001111110101111000">
 
     
     <link rel="alternative" href="/atom.xml" title="伈情的博客" type="application/atom+xml">
@@ -90,14 +82,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/04/hongbao/" title="中国移动517活动架构设计" itemprop="url">中国移动517活动架构设计</a>
+      <a href="/2016/06/订单ID设计/" title="订单ID设计" itemprop="url">订单ID设计</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Nickid" target="_blank" itemprop="author">Nickid</a>
 		
   <p class="article-time">
-    <time datetime="2016-04-30T10:19:20.000Z" itemprop="datePublished"> 发表于 2016-04-30</time>
+    <time datetime="2016-06-14T02:50:16.000Z" itemprop="datePublished"> 发表于 2016-06-14</time>
     
   </p>
 </header>
@@ -106,18 +98,13 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#技术架构"><span class="toc-number">1.</span> <span class="toc-text">技术架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本设计思想："><span class="toc-number">2.</span> <span class="toc-text">基本设计思想：</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#订单ID生成规则设计"><span class="toc-number">1.</span> <span class="toc-text">订单ID生成规则设计</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p><img src="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png" alt="架构图"></p>
-<h2 id="基本设计思想："><a href="#基本设计思想：" class="headerlink" title="基本设计思想："></a>基本设计思想：</h2><ol>
-<li>前端H5：<br>a)  静态资源水平扩容到8台Nginx中<br>b)  将活动页面上的所有可以静态的元素全部静态化，并尽量减少动态元素<br>c)  将所有图片、样式、js脚本缓存至用户终端，页面采取懒加载模式</li>
-<li>奖券池独立拆分，提高性能：<br>a)  采用多进程+单线程提高处理能力，将奖券池水平拆分到5台Redis内存数据库中，5台应用逻辑服务器单独对应各自的奖券池Redis，每台节点数据彼此隔离。<br>b)  单个节点的处理能力为900TPS, 若拆分5个独立节点则集群的处理能力为4500TPS。</li>
-<li>用户信息使用Tedis+Zookeeper+Redis集群：<br>a)  用户信息存入3台Redis集群，采用多写随机读的设计模式，提高并发访问的处理能力。<br>b)  用户信息每天可用抽奖次数及当日分享状态使用Redis自身的定时失效特性，避免每日0时程序扫库处理。</li>
-<li>处理超卖超中问题：<br>a)  用户个人信息为多线程处理，保证用户查询相应时间不超过10ms<br>b)  票池数据信息采用轻量级加锁，票池访问为多线程，票池修改采用加锁方式，当用户中奖时程序才进入加锁修改票池信息，用户未中奖情况下无加锁操作。</li>
-<li>WAF策略中心：<br>a)  按照IP+Session会话进行每秒请求量控制，大于一定阀值进行短时间拒绝。<br>b)  服务降级，当后台压力过大处理较慢时，开启限流模块，控制每秒请求量。</li>
-</ol>
+		<h2 id="订单ID生成规则设计"><a href="#订单ID生成规则设计" class="headerlink" title="订单ID生成规则设计"></a>订单ID生成规则设计</h2><p>1100000111110000001001101101000010011 00100110 00011010</p>
+<p>timestamp:1465896097469,timestampLeftShift:16,nextId:6825073419298304,workerId:38,sequence:0<br>6825073419298304<br>25<br> 1100000111111010111100011110010111001 00100110 00000000<br>1465896097469<br>1465896097469<br>104142355641<br>1361753741828</p>
+<p>10011110100001110110110010001101000000100</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -126,7 +113,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/架构设计/">架构设计</a>
+  <span></span> <a href="/tags/算法设计/">算法设计</a>
   </div>
 
 </div>
@@ -135,7 +122,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://nickid.cn/2016/04/hongbao/" data-title="中国移动517活动架构设计 | 伈情的博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://nickid.cn/2016/06/订单ID设计/" data-title="订单ID设计 | 伈情的博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -148,19 +135,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/06/订单ID设计/" title="订单ID设计">
-  <strong>上一篇：</strong><br/>
-  <span>
-  订单ID设计</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/04/hello-world/"  title="Hello World">
+<a href="/2016/04/hongbao/"  title="中国移动517活动架构设计">
  <strong>下一篇：</strong><br/> 
- <span>Hello World
+ <span>中国移动517活动架构设计
 </span>
 </a>
 </div>
@@ -169,7 +148,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/04/hongbao/" data-title="中国移动517活动架构设计" data-url="http://nickid.cn/2016/04/hongbao/"></div>
+	<div class="ds-thread" data-thread-key="2016/06/订单ID设计/" data-title="订单ID设计" data-url="http://nickid.cn/2016/06/订单ID设计/"></div>
 </section>
 
 
@@ -179,7 +158,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#技术架构"><span class="toc-number">1.</span> <span class="toc-text">技术架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本设计思想："><span class="toc-number">2.</span> <span class="toc-text">基本设计思想：</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#订单ID生成规则设计"><span class="toc-number">1.</span> <span class="toc-text">订单ID生成规则设计</span></a></li></ol>
  
   </div>
 
