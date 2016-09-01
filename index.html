@@ -281,18 +281,12 @@
 </header>
     <div class="article-content">
         
-        <h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p><img src="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png" alt="架构图"></p>
-<h2 id="基本设计思想："><a href="#基本设计思想：" class="headerlink" title="基本设计思想："></a>基本设计思想：</h2><ol>
-<li>前端H5：<br>a)  静态资源水平扩容到8台Nginx中<br>b)  将活动页面上的所有可以静态的元素全部静态化，并尽量减少动态元素<br>c)  将所有图片、样式、js脚本缓存至用户终端，页面采取懒加载模式</li>
-<li>奖券池独立拆分，提高性能：<br>a)  采用多进程+单线程提高处理能力，将奖券池水平拆分到5台Redis内存数据库中，5台应用逻辑服务器单独对应各自的奖券池Redis，每台节点数据彼此隔离。<br>b)  单个节点的处理能力为900TPS, 若拆分5个独立节点则集群的处理能力为4500TPS。</li>
-<li>用户信息使用Tedis+Zookeeper+Redis集群：<br>a)  用户信息存入3台Redis集群，采用多写随机读的设计模式，提高并发访问的处理能力。<br>b)  用户信息每天可用抽奖次数及当日分享状态使用Redis自身的定时失效特性，避免每日0时程序扫库处理。</li>
-<li>处理超卖超中问题：<br>a)  用户个人信息为多线程处理，保证用户查询相应时间不超过10ms<br>b)  票池数据信息采用轻量级加锁，票池访问为多线程，票池修改采用加锁方式，当用户中奖时程序才进入加锁修改票池信息，用户未中奖情况下无加锁操作。</li>
-<li>WAF策略中心：<br>a)  按照IP+Session会话进行每秒请求量控制，大于一定阀值进行短时间拒绝。<br>b)  服务降级，当后台压力过大处理较慢时，开启限流模块，控制每秒请求量。</li>
-</ol>
-
+        <h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p><img src="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png" alt="架构图"><br>
         
         
         <p class="article-more-link">
+          
+            <a href="/2016/04/hongbao/#more">Read More</a>
           
        </p>
     </div>

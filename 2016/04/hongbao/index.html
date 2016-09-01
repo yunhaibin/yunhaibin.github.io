@@ -11,26 +11,17 @@
     
 
     
-    <meta name="description" content="技术架构
-基本设计思想：
-前端H5：a)  静态资源水平扩容到8台Nginx中b)  将活动页面上的所有可以静态的元素全部静态化，并尽量减少动态元素c)  将所有图片、样式、js脚本缓存至用户终端，页面采取懒加载模式
-奖券池独立拆分，提高性能：a)  采用多进程+单线程提高处理能力，将奖券池水平拆分到5台Redis内存数据库中，5台应用逻辑服务器单独对应各自的奖券池Redis，每台节点数据彼此隔离">
+    <meta name="description" content="技术架构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="中国移动517活动架构设计">
 <meta property="og:url" content="http://nickid.cn/2016/04/hongbao/index.html">
 <meta property="og:site_name" content="伈情的博客">
-<meta property="og:description" content="技术架构
-基本设计思想：
-前端H5：a)  静态资源水平扩容到8台Nginx中b)  将活动页面上的所有可以静态的元素全部静态化，并尽量减少动态元素c)  将所有图片、样式、js脚本缓存至用户终端，页面采取懒加载模式
-奖券池独立拆分，提高性能：a)  采用多进程+单线程提高处理能力，将奖券池水平拆分到5台Redis内存数据库中，5台应用逻辑服务器单独对应各自的奖券池Redis，每台节点数据彼此隔离">
+<meta property="og:description" content="技术架构">
 <meta property="og:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png">
-<meta property="og:updated_time" content="2016-04-30T12:27:31.483Z">
+<meta property="og:updated_time" content="2016-09-01T02:41:17.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="中国移动517活动架构设计">
-<meta name="twitter:description" content="技术架构
-基本设计思想：
-前端H5：a)  静态资源水平扩容到8台Nginx中b)  将活动页面上的所有可以静态的元素全部静态化，并尽量减少动态元素c)  将所有图片、样式、js脚本缓存至用户终端，页面采取懒加载模式
-奖券池独立拆分，提高性能：a)  采用多进程+单线程提高处理能力，将奖券池水平拆分到5台Redis内存数据库中，5台应用逻辑服务器单独对应各自的奖券池Redis，每台节点数据彼此隔离">
+<meta name="twitter:description" content="技术架构">
 <meta name="twitter:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png">
 
     
@@ -110,7 +101,7 @@
 		
 		</div>
 		
-		<h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p><img src="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png" alt="架构图"></p>
+		<h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p><img src="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png" alt="架构图"><br><a id="more"></a></p>
 <h2 id="基本设计思想："><a href="#基本设计思想：" class="headerlink" title="基本设计思想："></a>基本设计思想：</h2><ol>
 <li>前端H5：<br>a)  静态资源水平扩容到8台Nginx中<br>b)  将活动页面上的所有可以静态的元素全部静态化，并尽量减少动态元素<br>c)  将所有图片、样式、js脚本缓存至用户终端，页面采取懒加载模式</li>
 <li>奖券池独立拆分，提高性能：<br>a)  采用多进程+单线程提高处理能力，将奖券池水平拆分到5台Redis内存数据库中，5台应用逻辑服务器单独对应各自的奖券池Redis，每台节点数据彼此隔离。<br>b)  单个节点的处理能力为900TPS, 若拆分5个独立节点则集群的处理能力为4500TPS。</li>
