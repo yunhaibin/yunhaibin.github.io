@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/dubbo%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B.jpg">
 <meta property="og:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/dubbo%E6%B6%88%E8%B4%B9%E6%9C%8D%E5%8A%A1.jpg">
 <meta property="og:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/dubbo%E6%A8%A1%E5%9D%97%E5%88%92%E5%88%86.png">
-<meta property="og:updated_time" content="2017-01-23T06:50:52.966Z">
+<meta property="og:updated_time" content="2017-01-23T06:53:59.622Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dubbo架构分析">
 <meta name="twitter:description" content="Dubbo是阿里巴巴服务化治理的核心框架，并被广泛应用于阿里巴巴集团的各成员站点，致力于提供高性能和透明化的RPC远程服务调用方案，以及SOA服务治理方案，它最大的特点是按照分层的方式来架构，使用这种方式可以使各个层之间解耦合（或者最大限度地松耦合）。从服务模型的角度来看，Dubbo采用的是一种非常简单的模型，要么是提供方提供服务，要么是消费方消费服务，所以基于这一点可以抽象出服务提供方（Pro">
@@ -114,6 +114,7 @@
         <blockquote>
 <p>Dubbo是阿里巴巴服务化治理的核心框架，并被广泛应用于阿里巴巴集团的各成员站点，致力于提供高性能和透明化的RPC远程服务调用方案，以及SOA服务治理方案，它最大的特点是按照分层的方式来架构，使用这种方式可以使各个层之间解耦合（或者最大限度地松耦合）。从服务模型的角度来看，Dubbo采用的是一种非常简单的模型，要么是提供方提供服务，要么是消费方消费服务，所以基于这一点可以抽象出服务提供方（Provider）和服务消费方（Consumer）两个角色。</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h2><p>Dubbo整体设计如下图所示：</p>
 <p><img src="http://7xtkrj.com1.z0.glb.clouddn.com/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84.png" alt="image"></p>
 <p>Dubbo框架设计一共划分了10个层，而最上面的Service层是留给实际想要使用Dubbo开发分布式服务的开发者实现业务逻辑的接口层。图中左边淡蓝背景的为服务消费方使用的接口，右边淡绿色背景的为服务提供方使用的接口，位于中轴线上的为双方都用到的接口。<br>下面，结合Dubbo官方文档，我们分别理解一下框架分层架构中，各个层次的设计要点：</p>
