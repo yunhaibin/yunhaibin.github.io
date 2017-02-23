@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="伈情的博客">
 <meta property="og:description" content="技术架构">
 <meta property="og:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png">
-<meta property="og:updated_time" content="2016-09-01T02:41:17.979Z">
+<meta property="og:updated_time" content="2017-02-09T01:29:18.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="中国移动517活动架构设计">
 <meta name="twitter:description" content="技术架构">
@@ -108,18 +108,18 @@
       
         <h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p><img src="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png" alt="架构图"><br><a id="more"></a></p>
 <h2 id="基本设计思想："><a href="#基本设计思想：" class="headerlink" title="基本设计思想："></a>基本设计思想：</h2><ol>
-<li>前端H5：<br>a)  静态资源水平扩容到8台Nginx中<br>b)  将活动页面上的所有可以静态的元素全部静态化，并尽量减少动态元素<br>c)  将所有图片、样式、js脚本缓存至用户终端，页面采取懒加载模式</li>
-<li>奖券池独立拆分，提高性能：<br>a)  采用多进程+单线程提高处理能力，将奖券池水平拆分到5台Redis内存数据库中，5台应用逻辑服务器单独对应各自的奖券池Redis，每台节点数据彼此隔离。<br>b)  单个节点的处理能力为900TPS, 若拆分5个独立节点则集群的处理能力为4500TPS。</li>
-<li>用户信息使用Tedis+Zookeeper+Redis集群：<br>a)  用户信息存入3台Redis集群，采用多写随机读的设计模式，提高并发访问的处理能力。<br>b)  用户信息每天可用抽奖次数及当日分享状态使用Redis自身的定时失效特性，避免每日0时程序扫库处理。</li>
-<li>处理超卖超中问题：<br>a)  用户个人信息为多线程处理，保证用户查询相应时间不超过10ms<br>b)  票池数据信息采用轻量级加锁，票池访问为多线程，票池修改采用加锁方式，当用户中奖时程序才进入加锁修改票池信息，用户未中奖情况下无加锁操作。</li>
-<li>WAF策略中心：<br>a)  按照IP+Session会话进行每秒请求量控制，大于一定阀值进行短时间拒绝。<br>b)  服务降级，当后台压力过大处理较慢时，开启限流模块，控制每秒请求量。</li>
+<li>前端H5：<br>a)  静态资源水平扩容到8台Nginx中;<br>b)  将活动页面上的所有可以静态的元素全部静态化，并尽量减少动态元素;<br>c)  将所有图片、样式、js脚本缓存至用户终端，页面采取懒加载模式;</li>
+<li>奖券池独立拆分，提高性能：<br>a)  采用多进程+单线程提高处理能力，将奖券池水平拆分到5台Redis内存数据库中，5台应用逻辑服务器单独对应各自的奖券池Redis，每台节点数据彼此隔离;<br>b)  单个节点的处理能力为1.2WTPS, 拆分5个独立节点的处理能力线性扩展为5WTPS（性能压测）;</li>
+<li>用户信息使用Tedis+Zookeeper+Redis集群：<br>a)  用户信息存入3台Redis集群，采用多写随机读的设计模式，提高并发访问的处理能力;<br>b)  用户信息每天可用抽奖次数及当日分享状态使用Redis自身的定时失效特性，避免每日0时程序扫库处理;</li>
+<li>处理超卖超中问题：<br>a)  用户个人信息为多线程处理，保证用户查询相应时间不超过10ms;<br>b)  票池数据信息采用轻量级加锁，票池访问为多线程，票池修改采用加锁方式，当用户中奖时程序才进入加锁修改票池信息，用户未中奖情况下无加锁操作;</li>
+<li>WAF策略中心：<br>a)  按照IP+Session会话进行每秒请求量控制，大于一定阀值进行短时间拒绝;<br>b)  服务降级，当后台压力过大处理较慢时，开启限流模块，控制每秒请求量;</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://nickid.cn/2016/04/hongbao/" data-id="ciy9qiwe800083cps7u2bu2vt" class="article-share-link" data-share="baidu" data-title="中国移动517活动架构设计">分享到</a>
+        <a data-url="http://nickid.cn/2016/04/hongbao/" data-id="cizi3aevv000he8psf2z6cbyn" class="article-share-link" data-share="baidu" data-title="中国移动517活动架构设计">分享到</a>
       
 
       
@@ -164,7 +164,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dubbo/">Dubbo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构设计/">架构设计</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法设计/">算法设计</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dubbo/">Dubbo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习总结/">学习总结</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构设计/">架构设计</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法设计/">算法设计</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -173,7 +173,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Dubbo/" style="font-size: 20px;">Dubbo</a> <a href="/tags/架构设计/" style="font-size: 20px;">架构设计</a> <a href="/tags/算法设计/" style="font-size: 10px;">算法设计</a>
+      <a href="/tags/Dubbo/" style="font-size: 20px;">Dubbo</a> <a href="/tags/学习总结/" style="font-size: 10px;">学习总结</a> <a href="/tags/架构设计/" style="font-size: 20px;">架构设计</a> <a href="/tags/算法设计/" style="font-size: 10px;">算法设计</a>
     </div>
   </div>
 
@@ -182,7 +182,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -194,6 +194,14 @@
       <ul>
         
           <li>
+            <a href="/2017/02/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/Javassist动态编程/">Javassist动态编程</a>
+          </li>
+        
+          <li>
             <a href="/2017/01/Dubbo架构分析/">Dubbo架构分析</a>
           </li>
         
@@ -203,14 +211,6 @@
         
           <li>
             <a href="/2016/06/super-diamond配置管理中心-Docker/">super-diamond配置管理中心+Docker</a>
-          </li>
-        
-          <li>
-            <a href="/2016/06/订单ID设计/">订单ID设计</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/hongbao/">中国移动517活动架构设计</a>
           </li>
         
       </ul>
