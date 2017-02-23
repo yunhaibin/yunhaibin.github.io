@@ -82,58 +82,6 @@
     <div class="outer">
       <section id="main">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/02/hello-world/" class="article-date">
-  <time datetime="2017-02-23T07:50:43.510Z" itemprop="datePublished">2017-02-23</time>
-  <span id="busuanzi_container_site_pv"> | Views: [<span id="busuanzi_value_page_pv"></span>]</span>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-<h3 id="Generate-and-deploy-to-remote-sites"><a href="#Generate-and-deploy-to-remote-sites" class="headerlink" title="Generate and deploy to remote sites"></a>Generate and deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g <span class="_">-d</span></div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://nickid.cn/2017/02/hello-world/" data-id="cizi3aeuy0001e8psp4iqafok" class="article-share-link" data-share="baidu" data-title="Hello World">分享到</a>
-      
-
-      
-        <a href="http://nickid.cn/2017/02/hello-world/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-Javassist动态编程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/02/Javassist动态编程/" class="article-date">
@@ -160,39 +108,11 @@
         <blockquote>
 <p>Javassist是一个开源的分析、编辑和创建Java字节码的类库。是由东京工业大学的数学和计算机科学系的 Shigeru Chiba （千叶 滋）所创建的。它已加入了开放源代码JBoss 应用服务器项目,通过使用Javassist对字节码操作为JBoss实现动态”AOP”框架。</p>
 </blockquote>
-<h3 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h3><p><a href="https://github.com/jboss-javassist/javassist" target="_blank" rel="external">https://github.com/jboss-javassist/javassist</a></p>
-<p><a href="http://jboss-javassist.github.io/javassist" target="_blank" rel="external">http://jboss-javassist.github.io/javassist</a></p>
-<h3 id="动态编程"><a href="#动态编程" class="headerlink" title="动态编程"></a>动态编程</h3><p>Dubbo框架中使用到<br>Javassist ProxyFactory    Stable通过字节码生成代替反射，性能比较好（推荐使用）    依赖于javassist.jar包，占用JVM的Perm内存，Perm可能要设大一些：java -XX:PermSize=128m    可用于生产环境    Alibaba</p>
-<p>要想将编译时不存在的类在运行时动态创建并加载，通常有两种策略：</p>
-<ol>
-<li>动态编译</li>
-<li>动态生成二进制字节码（.class）</li>
-</ol>
-<p>对于第二种策略，实际上已经有诸多比较成熟的开源项目提供支持，如CGLib、ASM、Javassist等。这些开源项目通常都具备两方面的功能：</p>
-<ol>
-<li>动态创建新类或新接口的二进制字节码</li>
-<li>动态扩展现有类或接口的二进制字节码</li>
-</ol>
-<p>我们常用到的动态特性主要是反射，在运行时查找对象属性、方法，修改作用域，通过方法名称调用方法等。在线的应用不会频繁使用反射，因为反射的性能开销较大。其实还有一种和反射一样强大的特性，但是开销却很低，它就是Javassit。</p>
-<p>Javassit其实就是一个二方包，提供了运行时操作Java字节码的方法。大家都知道，Java代码编译完会生成.class文件，就是一堆字节码。JVM(准确说是JIT)会解释执行这些字节码(转换为机器码并执行)，由于字节码的解释执行是在运行时进行的，那我们能否手工编写字节码，再由JVM执行呢？答案是肯定的，而Javassist就提供了一些方便的方法，让我们通过这些方法生成字节码。</p>
-<p>类似字节码操作方法还有ASM。几种动态编程方法相比较，在性能上Javassist高于反射，但低于ASM，因为Javassist增加了一层抽象。在实现成本上Javassist和反射都很低，而ASM由于直接操作字节码，相比Javassist源码级别的api实现成本高很多。几个方法有自己的应用场景，比如Kryo使用的是ASM，追求性能的最大化。而NBeanCopyUtil采用的是Javassist，在对象拷贝的性能上也已经明显高于其他的库，并保持高易用性。实际项目中推荐先用Javassist实现原型，若在性能测试中发现Javassist成为了性能瓶颈，再考虑使用其他字节码操作方法做优化。</p>
-<p>总结：CGLib的底层基于ASM实现，是一个高效高性能的生成库；而ASM是一个轻量级的类库，但需要涉及到JVM的操作和指令；相比而言，Javassist要简单的多，完全是基于Java的API，但其性能相比前二者要差一些。在性能要求相对低的场合，Javassist仍然十分有用，如JBoss中就调用了Javassist。</p>
-<p>如下的代码是动态创建Java类二进制字节码并通过反射调用的示例，可供参考：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line">import java.lang.reflect.InvocationTargetException;</div><div class="line">import java.lang.reflect.Method;</div><div class="line"></div><div class="line">import javassist.CannotCompileException;</div><div class="line">import javassist.ClassPool;</div><div class="line">import javassist.CtClass;</div><div class="line">import javassist.CtConstructor;</div><div class="line">import javassist.CtField;</div><div class="line">import javassist.CtNewMethod;</div><div class="line">import javassist.Modifier;</div><div class="line">import javassist.NotFoundException;</div><div class="line">import javassist.CtField.Initializer;</div><div class="line"></div><div class="line">public class JavassistGenerator &#123;</div><div class="line">	</div><div class="line">	public static void main(String[] args) throws CannotCompileException, NotFoundException, InstantiationException, IllegalAccessException, ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, InvocationTargetException &#123;</div><div class="line">		// 创建类</div><div class="line">		ClassPool pool = ClassPool.getDefault();</div><div class="line">		CtClass cls = pool.makeClass(&quot;cn.ibm.com.TestClass&quot;);</div><div class="line">		</div><div class="line">		// 添加私有成员name及其getter、setter方法</div><div class="line">		CtField param = new CtField(pool.get(&quot;java.lang.String&quot;), &quot;name&quot;, cls);</div><div class="line">		param.setModifiers(Modifier.PRIVATE);</div><div class="line">		cls.addMethod(CtNewMethod.setter(&quot;setName&quot;, param));</div><div class="line">		cls.addMethod(CtNewMethod.getter(&quot;getName&quot;, param));</div><div class="line">		cls.addField(param, Initializer.constant(&quot;&quot;));</div><div class="line">		</div><div class="line">		// 添加无参的构造体</div><div class="line">		CtConstructor cons = new CtConstructor(new CtClass[] &#123;&#125;, cls);</div><div class="line">		cons.setBody(&quot;&#123;name = \&quot;Brant\&quot;;&#125;&quot;);</div><div class="line">		cls.addConstructor(cons);</div><div class="line">		</div><div class="line">		// 添加有参的构造体</div><div class="line">		cons = new CtConstructor(new CtClass[] &#123;pool.get(&quot;java.lang.String&quot;)&#125;, cls);</div><div class="line">		cons.setBody(&quot;&#123;$0.name = $1;&#125;&quot;);</div><div class="line">		cls.addConstructor(cons);</div><div class="line">		</div><div class="line">		// 打印创建类的类名</div><div class="line">		System.out.println(cls.toClass());</div><div class="line">		</div><div class="line">		// 通过反射创建无参的实例，并调用getName方法</div><div class="line">		Object o = Class.forName(&quot;cn.ibm.com.TestClass&quot;).newInstance();</div><div class="line">		Method getter = o.getClass().getMethod(&quot;getName&quot;);</div><div class="line">		System.out.println(getter.invoke(o));</div><div class="line">		</div><div class="line">		// 调用其setName方法</div><div class="line">		Method setter = o.getClass().getMethod(&quot;setName&quot;, new Class[] &#123;String.class&#125;);</div><div class="line">		setter.invoke(o, &quot;Adam&quot;);</div><div class="line">		System.out.println(getter.invoke(o));</div><div class="line">		</div><div class="line">		// 通过反射创建有参的实例，并调用getName方法</div><div class="line">		o = Class.forName(&quot;cn.ibm.com.TestClass&quot;).getConstructor(String.class).newInstance(&quot;Liu Jian&quot;);</div><div class="line">		getter = o.getClass().getMethod(&quot;getName&quot;);</div><div class="line">		System.out.println(getter.invoke(o));</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="特别注意："><a href="#特别注意：" class="headerlink" title="特别注意："></a>特别注意：</h3><ol>
-<li>Javassist不支持要创建或注入的类中存在泛型参数</li>
-<li>Javassist对@类型的注解（Annotation）只支持查询，不支持添加或修改</li>
-</ol>
-<p>参考：</p>
-<ul>
-<li><p>Javassist学习总结<br><a href="http://blog.csdn.net/sadfishsc/article/details/9999169" target="_blank" rel="external">http://blog.csdn.net/sadfishsc/article/details/9999169</a></p>
-</li>
-<li><p>javassist学习<br><a href="http://yonglin4605.iteye.com/blog/1396494" target="_blank" rel="external">http://yonglin4605.iteye.com/blog/1396494</a></p>
-</li>
-<li><p>Java动态编程初探——Javassist<br><a href="http://www.cnblogs.com/hucn/p/3636912.html" target="_blank" rel="external">http://www.cnblogs.com/hucn/p/3636912.html</a></p>
-</li>
-</ul>
-
+        
+          <p class="article-more-link">
+            <a href="/2017/02/Javassist动态编程/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -427,6 +347,58 @@
 
 
   
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/hello-world/" class="article-date">
+  <time datetime="2016-06-05T21:56:06.000Z" itemprop="datePublished">2016-06-06</time>
+  <span id="busuanzi_container_site_pv"> | Views: [<span id="busuanzi_value_page_pv"></span>]</span>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<h3 id="Generate-and-deploy-to-remote-sites"><a href="#Generate-and-deploy-to-remote-sites" class="headerlink" title="Generate and deploy to remote sites"></a>Generate and deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g <span class="_">-d</span></div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://nickid.cn/2016/06/hello-world/" data-id="cizi3aeuy0001e8psp4iqafok" class="article-share-link" data-share="baidu" data-title="Hello World">分享到</a>
+      
+
+      
+        <a href="http://nickid.cn/2016/06/hello-world/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hongbao" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/04/hongbao/" class="article-date">
@@ -506,7 +478,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -516,10 +488,6 @@
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2017/02/hello-world/">Hello World</a>
-          </li>
         
           <li>
             <a href="/2017/02/Javassist动态编程/">Javassist动态编程</a>
@@ -535,6 +503,10 @@
         
           <li>
             <a href="/2016/06/super-diamond配置管理中心-Docker/">super-diamond配置管理中心+Docker</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/订单ID设计/">订单ID设计</a>
           </li>
         
       </ul>
