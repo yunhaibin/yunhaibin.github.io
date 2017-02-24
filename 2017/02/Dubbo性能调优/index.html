@@ -4,20 +4,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>中国移动517活动架构设计 | 伈情的博客</title>
+  <title>Dubbo性能调优 | 伈情的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="技术架构">
+  <meta name="description" content="性能优化dubbo序列化+netty目前客户端数据接口的场景99%为1k数据量以内，根据各种协议性能测试对比分析，选用dubbo序列化与netty传输方式可达到性能最大化，以下为阿里官方给出的性能测试结果，提供参考：
+1k string 场景：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="中国移动517活动架构设计">
-<meta property="og:url" content="http://nickid.cn/2016/07/hongbao/index.html">
+<meta property="og:title" content="Dubbo性能调优">
+<meta property="og:url" content="http://nickid.cn/2017/02/Dubbo性能调优/index.html">
 <meta property="og:site_name" content="伈情的博客">
-<meta property="og:description" content="技术架构">
-<meta property="og:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png">
-<meta property="og:updated_time" content="2017-02-23T07:54:27.471Z">
+<meta property="og:description" content="性能优化dubbo序列化+netty目前客户端数据接口的场景99%为1k数据量以内，根据各种协议性能测试对比分析，选用dubbo序列化与netty传输方式可达到性能最大化，以下为阿里官方给出的性能测试结果，提供参考：
+1k string 场景：">
+<meta property="og:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/Dubbo-1k.png">
+<meta property="og:updated_time" content="2017-02-24T10:49:39.080Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="中国移动517活动架构设计">
-<meta name="twitter:description" content="技术架构">
-<meta name="twitter:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png">
+<meta name="twitter:title" content="Dubbo性能调优">
+<meta name="twitter:description" content="性能优化dubbo序列化+netty目前客户端数据接口的场景99%为1k数据量以内，根据各种协议性能测试对比分析，选用dubbo序列化与netty传输方式可达到性能最大化，以下为阿里官方给出的性能测试结果，提供参考：
+1k string 场景：">
+<meta name="twitter:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/Dubbo-1k.png">
   
     <link rel="alternative" href="/atom.xml" title="伈情的博客" type="application/atom+xml">
   
@@ -83,10 +86,10 @@
   </div>
 </header>
     <div class="outer">
-      <section id="main"><article id="post-hongbao" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-Dubbo性能调优" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/hongbao/" class="article-date">
-  <time datetime="2016-07-30T10:19:20.000Z" itemprop="datePublished">2016-07-30</time>
+    <a href="/2017/02/Dubbo性能调优/" class="article-date">
+  <time datetime="2017-02-24T10:28:06.000Z" itemprop="datePublished">2017-02-24</time>
   <!-- 不算子计数器 -->
   <!-- <span id="busuanzi_container_site_pv"> | Views: [<span id="busuanzi_value_page_pv"></span>]</span> -->
 </a>
@@ -99,7 +102,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      中国移动517活动架构设计
+      Dubbo性能调优
     </h1>
   
 
@@ -107,28 +110,44 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p><img src="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png" alt="架构图"><br><a id="more"></a></p>
-<h2 id="基本设计思想："><a href="#基本设计思想：" class="headerlink" title="基本设计思想："></a>基本设计思想：</h2><ol>
-<li>前端H5：<br>a)  静态资源水平扩容到8台Nginx中;<br>b)  将活动页面上的所有可以静态的元素全部静态化，并尽量减少动态元素;<br>c)  将所有图片、样式、js脚本缓存至用户终端，页面采取懒加载模式;</li>
-<li>奖券池独立拆分，提高性能：<br>a)  采用多进程+单线程提高处理能力，将奖券池水平拆分到5台Redis内存数据库中，5台应用逻辑服务器单独对应各自的奖券池Redis，每台节点数据彼此隔离;<br>b)  单个节点的处理能力为1.2WTPS, 拆分5个独立节点的处理能力线性扩展为5WTPS（性能压测）;</li>
-<li>用户信息使用Tedis+Zookeeper+Redis集群：<br>a)  用户信息存入3台Redis集群，采用多写随机读的设计模式，提高并发访问的处理能力;<br>b)  用户信息每天可用抽奖次数及当日分享状态使用Redis自身的定时失效特性，避免每日0时程序扫库处理;</li>
-<li>处理超卖超中问题：<br>a)  用户个人信息为多线程处理，保证用户查询相应时间不超过10ms;<br>b)  票池数据信息采用轻量级加锁，票池访问为多线程，票池修改采用加锁方式，当用户中奖时程序才进入加锁修改票池信息，用户未中奖情况下无加锁操作;</li>
-<li>WAF策略中心：<br>a)  按照IP+Session会话进行每秒请求量控制，大于一定阀值进行短时间拒绝;<br>b)  服务降级，当后台压力过大处理较慢时，开启限流模块，控制每秒请求量;</li>
+        <h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><h3 id="dubbo序列化-netty"><a href="#dubbo序列化-netty" class="headerlink" title="dubbo序列化+netty"></a>dubbo序列化+netty</h3><p>目前客户端数据接口的场景99%为1k数据量以内，根据各种协议性能测试对比分析，选用dubbo序列化与netty传输方式可达到性能最大化，以下为阿里官方给出的性能测试结果，提供参考：</p>
+<p>1k string 场景：</p>
+<p><img src="http://7xtkrj.com1.z0.glb.clouddn.com/Dubbo-1k.png" alt="image"></p>
+<a id="more"></a>
+<h3 id="netty线程池配置"><a href="#netty线程池配置" class="headerlink" title="netty线程池配置"></a>netty线程池配置</h3><p>经过线上生产环境压力测试（服务器48核，由于CPU为AMD，单核处理能力偏低），评估后最优线程数配置为500，采用固定大小的线程池，计算密集型服务可最大分配8核，IO密集型服务最大分配4核。</p>
+<p>线上2016年1月31日系统无法接入请求故障维持4个多小时，排查后发现后端BOSS系统处理能力有限，且响应时间过长，导致线程满负荷状态下切配置队列的情况下，线程池打满后，请求全部进入队列排队，请求与处理能力严重失衡，导致队列很快也被打满，所有请求无法接入，服务呈现不可用状态，再经过分析后，决定去掉队列且将连接超时时间由12秒缩短为5秒，舍弃BOSS系统响应超过5秒的请求，对用户侧进行友好提示，保证BOSS响应低于5秒的用户可正常使用。</p>
+<p>配置策略：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dubbo:protocol</span> <span class="attr">name</span>=<span class="string">"dubbo"</span> <span class="attr">port</span>=<span class="string">"$&#123;dubbo.protocol.port&#125;"</span> <span class="attr">server</span>=<span class="string">"netty"</span> <span class="attr">client</span>=<span class="string">"netty"</span> <span class="attr">serialization</span>=<span class="string">"dubbo"</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> <span class="attr">threadpool</span>=<span class="string">"fixed"</span> <span class="attr">threads</span>=<span class="string">"500"</span> <span class="attr">queues</span>=<span class="string">"0"</span> <span class="attr">buffer</span>=<span class="string">"8192"</span> <span class="attr">accepts</span>=<span class="string">"0"</span> <span class="attr">payload</span>=<span class="string">"8388608"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="zookeeper注册中心"><a href="#zookeeper注册中心" class="headerlink" title="zookeeper注册中心"></a>zookeeper注册中心</h3><p>支持基于网络的集群方式，适合生产环境服务数量较多环境下使用，且配置使用方式简单，可靠性高。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dubbo:registry</span> <span class="attr">protocol</span>=<span class="string">"zookeeper"</span> <span class="attr">address</span>=<span class="string">"$&#123;dubbo.registry.address&#125;"</span> <span class="attr">file</span>=<span class="string">"$&#123;user.home&#125;/.dubbo/$&#123;dubbo.registry.file&#125;"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>特别注意：</strong> zookeeper采用集群方式保证注册中心服务的高可用与高性能，部署节点数应为奇数。</p>
+<h3 id="JVM配置优化"><a href="#JVM配置优化" class="headerlink" title="JVM配置优化"></a>JVM配置优化</h3><ol>
+<li><p>方案一：通用方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#JAVA_HOME=/application/search/vertical-search/vertical-search/jdk1.7.0_51</div><div class="line">VERTICAL_SEARCH_LOG=&quot;/data/gclog/&quot;</div><div class="line">#VERTICAL_SEARCH_CONF=&quot;/application/search/vertical-search/conf&quot;</div><div class="line"></div><div class="line">JAVA_OPTS=&apos;-server -verbose:gc -Xms6000m -Xmx6000m -Xmn2000m -XX:PermSize=300m -XX:MaxPermSize=300m -Xss256k -XX:NewSize=500m -XX:MaxNewSize=500m -XX:+UseConcMarkSweepGC -XX:ParallelGCThreads=16 -XX:+UseCMSCompactAtFullCollection -XX:CMSMaxAbortablePrecleanTime=5000 -XX:+UseParNewGC -XX:+DisableExplicitGC -Xloggc:$&#123;VERTICAL_SEARCH_LOG&#125;/logs/gc.log -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$&#123;VERTICAL_SEARCH_LOG&#125;/logs/HeapDumpOnOutOfMemoryError.log -XX:+DisableExplicitGC -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -DVERTICAL_SEARCH_LOG=$&#123;VERTICAL_SEARCH_LOG&#125;&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>方案二：又有改进了，上面方法不太好，因为没有用到救助空间，所以年老代容易满，CMS执行会比较频繁。我改善了一下，还是用救助空间，但是把救助空间加大，这样也不会有promotion failed。具体操作上，32位Linux和64位Linux好像不一样，64位系统似乎只要配置MaxTenuringThreshold参数，CMS还是有暂停。为了解决暂停问题和promotion failed问题，最后我设置-XX:SurvivorRatio=1 ，并把MaxTenuringThreshold去掉，这样即没有暂停又不会有promotoin failed，而且更重要的是，年老代和永久代上升非常慢（因为好多对象到不了年老代就被回收了），所以CMS执行频率非常低，好几个小时才执行一次，这样，服务器都不用重启了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#JAVA_HOME=/application/search/vertical-search/vertical-search/jdk1.7.0_51</div><div class="line">VERTICAL_SEARCH_LOG=&quot;/data/gc&quot;</div><div class="line"></div><div class="line">JAVA_OPTS=&apos;-server -Xmx4000M -Xms4000M -Xmn600M -XX:PermSize=500M -XX:MaxPermSize=500M -Xss256K -XX:+DisableExplicitGC -XX:SurvivorRatio=1 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:CMSFullGCsBeforeCompaction=0 -XX:+CMSClassUnloadingEnabled -XX:LargePageSizeInBytes=128M -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=80 -XX:SoftRefLRUPolicyMSPerMB=0 -XX:+PrintClassHistogram -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -Xloggc:$&#123;VERTICAL_SEARCH_LOG&#125;/logs/gc.log&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>方案三：64位jdk参考设置，年老代涨得很慢，CMS执行频率变小，CMS没有停滞，也不会有promotion failed问题，内存回收得很干净.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#JAVA_HOME=/application/search/vertical-search/vertical-search/jdk1.7.0_51</div><div class="line">VERTICAL_SEARCH_LOG=&quot;/data/gc&quot;</div><div class="line"></div><div class="line">JAVA_OPTS=&apos;-server -Xmx4000M -Xms4000M -Xmn600M -XX:PermSize=500M -XX:MaxPermSize=500M -Xss256K -XX:+DisableExplicitGC -XX:SurvivorRatio=1 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:CMSFullGCsBeforeCompaction=0 -XX:+CMSClassUnloadingEnabled -XX:LargePageSizeInBytes=128M -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70 -XX:SoftRefLRUPolicyMSPerMB=0 -XX:+PrintClassHistogram -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -Xloggc:$&#123;VERTICAL_SEARCH_LOG&#125;/logs/gc.log&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>方案四：docker tomcat jvm优化方案:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-Xmx2048M -Xms2048M -Xmn512M -XX:PermSize=320M -XX:MaxPermSize=320M -Xss256K -XX:+DisableExplicitGC -XX:SurvivorRatio=1 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:CMSFullGCsBeforeCompaction=0 -XX:+CMSClassUnloadingEnabled -XX:LargePageSizeInBytes=128M -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=80 -XX:SoftRefLRUPolicyMSPerMB=0 -XX:+PrintClassHistogram -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC</div></pre></td></tr></table></figure>
+</li>
 </ol>
+<p><strong><em>Never Give Up!</em></strong></p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://nickid.cn/2016/07/hongbao/" data-id="cizjp4gzh000700psd50bbnrw" class="article-share-link" data-share="baidu" data-title="中国移动517活动架构设计">分享到</a>
+        <a data-url="http://nickid.cn/2017/02/Dubbo性能调优/" data-id="cizjp4gza000300psqqtcwnkt" class="article-share-link" data-share="baidu" data-title="Dubbo性能调优">分享到</a>
       
 
       
-        <a href="http://nickid.cn/2016/07/hongbao/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://nickid.cn/2017/02/Dubbo性能调优/#ds-thread" class="article-comment-link">评论</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/架构设计/">架构设计</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dubbo/">Dubbo</a></li></ul>
 
     </footer>
   </div>
@@ -136,19 +155,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/08/dubbo源码分析/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">
-        
-          Dubbo源码分析
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/06/super-diamond配置管理中心-Docker/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/02/Javassist动态编程/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">super-diamond配置管理中心+Docker</div>
+      <div class="article-nav-title">Javassist动态编程</div>
     </a>
   
 </nav>
@@ -158,7 +168,7 @@
 
 
   <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="2016/07/hongbao/" data-title="中国移动517活动架构设计" data-url="http://nickid.cn/2016/07/hongbao/"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2017/02/Dubbo性能调优/" data-title="Dubbo性能调优" data-url="http://nickid.cn/2017/02/Dubbo性能调优/"></div>
   </section>
 </section>
       
