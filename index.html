@@ -109,97 +109,11 @@
         <blockquote>
 <p>先来一张JVM思维导图，网上看到的，整体的已经非常全面了，感觉很不错，赞作者！！！</p>
 </blockquote>
-<p><img src="http://7xtkrj.com1.z0.glb.clouddn.com/JVM导图.jpg" alt="image"></p>
-<ol>
-<li>Heap-堆：新生代（Eden-幸存区、S0-From、S1-To），老年代</li>
-<li>PermGen-持久代</li>
-<li>线程栈</li>
-</ol>
-<blockquote>
-<p>类的生命周期包括这几个部分，加载、连接、初始化、使用和卸载，其中前三部是类的加载的过程，如下图：</p>
-</blockquote>
-<p><img src="http://7xtkrj.com1.z0.glb.clouddn.com/%E7%B1%BB%E5%8A%A0%E8%BD%BD.png" alt="image"></p>
-<ol>
-<li>加载，查找并加载类的二进制数据，在Java堆中也创建一个java.lang.Class类的对象；</li>
-<li>连接，连接又包含三块内容：验证、准备、初始化。1）验证，文件格式、元数据、字节码、符号引用验证；2）准备，为类的静态变量分配内存，并将其初始化为默认值；3）解析，把类中的符号引用转换为直接引用；</li>
-<li>初始化，为类的静态变量赋予正确的初始值；</li>
-<li>使用，new出对象程序中使用；</li>
-<li>卸载，执行垃圾回收；</li>
-</ol>
-<blockquote>
-<p>JVM的内存结构如下图：</p>
-</blockquote>
-<p><img src="http://7xtkrj.com1.z0.glb.clouddn.com/jvm%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84.png" alt="image"></p>
-<ul>
-<li><strong>Java堆（Heap）</strong>，是Java虚拟机所管理的内存中最大的一块，Java堆是被所有线程共享的一块内存区域，在虚拟机启动时创建，此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存。</li>
-<li><strong>方法区（Method Area）</strong>，方法区（Method Area）与Java堆一样，是各个线程共享的内存区域，它用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。</li>
-<li><strong>程序计数器（Program Counter Register）</strong>，程序计数器（Program Counter Register）是一块较小的内存空间，它的作用可以看做是当前线程所执行的字节码的行号指示器。</li>
-<li><strong>JVM栈（JVM Stacks）</strong>，与程序计数器一样，Java虚拟机栈（Java Virtual Machine Stacks）也是线程私有的，它的生命周期与线程相同。虚拟机栈描述的是Java方法执行的内存模型：每个方法被执行的时候都会同时创建一个栈帧（Stack Frame）用于存储局部变量表、操作栈、动态链接、方法出口等信息。每一个方法被调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程。</li>
-<li><strong>本地方法栈（Native Method Stacks）</strong>，本地方法栈（Native Method Stacks）与虚拟机栈所发挥的作用是非常相似的，其区别不过是虚拟机栈为虚拟机执行Java方法（也就是字节码）服务，而本地方法栈则是为虚拟机使用到的Native方法服务。</li>
-</ul>
-<blockquote>
-<p>对象分配规则：</p>
-</blockquote>
-<ul>
-<li>对象优先分配在Eden区，如果Eden区没有足够的空间时，虚拟机执行一次Minor GC。</li>
-<li>大对象直接进入老年代（大对象是指需要大量连续内存空间的对象）。这样做的目的是避免在Eden区和两个Survivor区之间发生大量的内存拷贝（新生代采用复制算法收集内存）。</li>
-<li>长期存活的对象进入老年代，虚拟机为每个对象定义了一个年龄计数器，如果对象经过了1次Minor GC那么对象会进入Survivor区，之后每经过一次Minor GC那么对象的年龄加1，知道达到阀值对象进入老年区。</li>
-<li>动态判断对象的年龄，如果Survivor区中相同年龄的所有对象大小的总和大于Survivor空间的一半，年龄大于或等于该年龄的对象可以直接进入老年代。</li>
-<li>空间分配担保，每次进行Minor GC时，JVM会计算Survivor区移至老年区的对象的平均大小，如果这个值大于老年区的剩余值大小则进行一次Full GC，如果小于检查HandlePromotionFailure设置，如果true则只进行Monitor GC,如果false则进行Full GC。</li>
-</ul>
-<blockquote>
-<p>GC算法 垃圾回收：</p>
-</blockquote>
-<h3 id="对象存活判断"><a href="#对象存活判断" class="headerlink" title="对象存活判断"></a>对象存活判断</h3><p>判断对象是否存活一般有两种方式：</p>
-<ol>
-<li>引用计数：每个对象有一个引用计数属性，新增一个引用时计数加1，引用释放时计数减1，计数为0时可以回收。此方法简单，无法解决对象相互循环引用的问题。</li>
-<li>可达性分析（Reachability Analysis）：从GC Roots开始向下搜索，搜索所走过的路径称为引用链。当一个对象到GC Roots没有任何引用链相连时，则证明此对象是不可用的，不可达对象。</li>
-</ol>
-<h3 id="GC算法"><a href="#GC算法" class="headerlink" title="GC算法"></a>GC算法</h3><p>GC最基础的算法有三种：标记 -清除算法、复制算法、标记-压缩算法，我们常用的垃圾回收器一般都采用分代收集算法：</p>
-<ol>
-<li>标记 -清除算法，“标记-清除”（Mark-Sweep）算法，如它的名字一样，算法分为“标记”和“清除”两个阶段：首先标记出所有需要回收的对象，在标记完成后统一回收掉所有被标记的对象。</li>
-<li>复制算法，“复制”（Copying）的收集算法，它将可用内存按容量划分为大小相等的两块，每次只使用其中的一块。当这一块的内存用完了，就将还存活着的对象复制到另外一块上面，然后再把已使用过的内存空间一次清理掉。</li>
-<li>标记-压缩算法，标记过程仍然与“标记-清除”算法一样，但后续步骤不是直接对可回收对象进行清理，而是让所有存活的对象都向一端移动，然后直接清理掉端边界以外的内存。</li>
-<li>分代收集算法，“分代收集”（Generational Collection）算法，把Java堆分为新生代和老年代，这样就可以根据各个年代的特点采用最适当的收集算法。</li>
-</ol>
-<h3 id="垃圾回收器"><a href="#垃圾回收器" class="headerlink" title="垃圾回收器"></a>垃圾回收器</h3><ol>
-<li>Serial收集器，串行收集器是最古老，最稳定以及效率高的收集器，可能会产生较长的停顿，只使用一个线程去回收。</li>
-<li>ParNew收集器，ParNew收集器其实就是Serial收集器的多线程版本。</li>
-<li>Parallel收集器，Parallel Scavenge收集器类似ParNew收集器，Parallel收集器更关注系统的吞吐量。</li>
-<li>Parallel Old 收集器，Parallel Old是Parallel Scavenge收集器的老年代版本，使用多线程和“标记－整理”算法。</li>
-<li>CMS收集器，CMS（Concurrent Mark Sweep）收集器是一种以获取最短回收停顿时间为目标的收集器。</li>
-<li>G1收集器，G1 (Garbage-First)是一款面向服务器的垃圾收集器,主要针对配备多颗处理器及大容量内存的机器. 以极高概率满足GC停顿时间要求的同时,还具备高吞吐量性能特征。</li>
-</ol>
-<blockquote>
-<p>GC分析 命令调优</p>
-</blockquote>
-<h3 id="GC日志分析"><a href="#GC日志分析" class="headerlink" title="GC日志分析"></a>GC日志分析</h3><p>年轻代young gc回收：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2016-07-05T10:43:18.093+0800: 25.395: [GC [PSYoungGen: 274931K-&gt;10738K(274944K)] 371093K-&gt;147186K(450048K), 0.0668480 secs] [Times: user=0.17 sys=0.08, real=0.07 secs]</div></pre></td></tr></table></figure>
-<p>老年代full gc回收：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2016-07-05T10:43:18.160+0800: 25.462: [Full GC [PSYoungGen: 10738K-&gt;0K(274944K)] [ParOldGen: 136447K-&gt;140379K(302592K)] 147186K-&gt;140379K(577536K) [PSPermGen: 85411K-&gt;85376K(171008K)], 0.6763541 secs] [Times: user=1.75 sys=0.02, real=0.68 secs]</div></pre></td></tr></table></figure>
-<p>通过上面日志分析得出，PSYoungGen、ParOldGen、PSPermGen属于Parallel收集器。其中PSYoungGen表示gc回收前后年轻代的内存变化，ParOldGen表示gc回收前后老年代的内存变化，PSPermGen表示gc回收前后永久区的内存变化，young gc 主要是针对年轻代进行内存回收比较频繁，耗时短，full gc 会对整个堆内存进行回城，耗时长，因此一般尽量减少full gc的次数。</p>
-<ul>
-<li>Young GC<br><img src="http://7xtkrj.com1.z0.glb.clouddn.com/young%20gc.png" alt="image"></li>
-<li>Full GC<br><img src="http://7xtkrj.com1.z0.glb.clouddn.com/full%20gc.png" alt="image"></li>
-</ul>
-<h3 id="JVM操作命令"><a href="#JVM操作命令" class="headerlink" title="JVM操作命令"></a>JVM操作命令</h3><p>Sun JDK监控和故障处理命令有jps jstat jmap jhat jstack jinfo</p>
-<ul>
-<li>jps，JVM Process Status Tool,显示指定系统内所有的HotSpot虚拟机进程。</li>
-<li>jstat，JVM statistics Monitoring是用于监视虚拟机运行时状态信息的命令，它可以显示出虚拟机进程中的类装载、内存、垃圾收集、JIT编译等运行数据。</li>
-<li>jmap，JVM Memory Map命令用于生成heap dump文件。</li>
-<li>jhat，JVM Heap Analysis Tool命令是与jmap搭配使用，用来分析jmap生成的dump，jhat内置了一个微型的HTTP/HTML服务器，生成dump的分析结果后，可以在浏览器中查看。</li>
-<li>jstack，用于生成java虚拟机当前时刻的线程快照。</li>
-<li>jinfo，JVM Configuration info 这个命令作用是实时查看和调整虚拟机运行参数。</li>
-</ul>
-<h3 id="调优工具"><a href="#调优工具" class="headerlink" title="调优工具"></a>调优工具</h3><p>常用调优工具分为两类，jdk自带监控工具：jconsole和jvisualvm，第三方有：MAT(Memory Analyzer Tool)、GChisto。</p>
-<ul>
-<li>jconsole，Java Monitoring and Management Console是从java5开始，在JDK中自带的java监控和管理控制台，用于对JVM中内存，线程和类等的监控。</li>
-<li>jvisualvm，jdk自带全能工具，可以分析内存快照、线程快照；监控内存变化、GC变化等。</li>
-<li>MAT，Memory Analyzer Tool，一个基于Eclipse的内存分析工具，是一个快速、功能丰富的Java heap分析工具，它可以帮助我们查找内存泄漏和减少内存消耗。</li>
-<li>GChisto，一款专业分析gc日志的工具。</li>
-</ul>
-<p><strong><em>Never Give Up!</em></strong></p>
-
+        
+          <p class="article-more-link">
+            <a href="/2017/03/JVM调优/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
