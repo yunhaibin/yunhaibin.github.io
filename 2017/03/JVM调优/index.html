@@ -4,17 +4,63 @@
 <head>
   <meta charset="utf-8">
   
-  <title>伈情的博客</title>
+  <title>JVM调优 | 伈情的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="技术分享">
-<meta property="og:type" content="website">
-<meta property="og:title" content="伈情的博客">
-<meta property="og:url" content="http://nickid.cn/index.html">
+  <meta name="description" content="先来一张JVM思维导图，网上看到的，整体的已经非常全面了，感觉很不错，赞作者！！！
+
+
+
+Heap-堆：新生代（Eden-幸存区、S0-From、S1-To），老年代
+PermGen-持久代
+线程栈
+
+
+类的生命周期包括这几个部分，加载、连接、初始化、使用和卸载，其中前三部是类的加载的过程，如下图：
+
+
+
+加载，查找并加载类的二进制数据，在Java堆中也创建一个java.lang.Class类的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM调优">
+<meta property="og:url" content="http://nickid.cn/2017/03/JVM调优/index.html">
 <meta property="og:site_name" content="伈情的博客">
-<meta property="og:description" content="技术分享">
+<meta property="og:description" content="先来一张JVM思维导图，网上看到的，整体的已经非常全面了，感觉很不错，赞作者！！！
+
+
+
+Heap-堆：新生代（Eden-幸存区、S0-From、S1-To），老年代
+PermGen-持久代
+线程栈
+
+
+类的生命周期包括这几个部分，加载、连接、初始化、使用和卸载，其中前三部是类的加载的过程，如下图：
+
+
+
+加载，查找并加载类的二进制数据，在Java堆中也创建一个java.lang.Class类的">
+<meta property="og:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/JVM导图.jpg">
+<meta property="og:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/%E7%B1%BB%E5%8A%A0%E8%BD%BD.png">
+<meta property="og:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/jvm%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/young%20gc.png">
+<meta property="og:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/full%20gc.png">
+<meta property="og:updated_time" content="2017-03-21T12:51:57.960Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="伈情的博客">
-<meta name="twitter:description" content="技术分享">
+<meta name="twitter:title" content="JVM调优">
+<meta name="twitter:description" content="先来一张JVM思维导图，网上看到的，整体的已经非常全面了，感觉很不错，赞作者！！！
+
+
+
+Heap-堆：新生代（Eden-幸存区、S0-From、S1-To），老年代
+PermGen-持久代
+线程栈
+
+
+类的生命周期包括这几个部分，加载、连接、初始化、使用和卸载，其中前三部是类的加载的过程，如下图：
+
+
+
+加载，查找并加载类的二进制数据，在Java堆中也创建一个java.lang.Class类的">
+<meta name="twitter:image" content="http://7xtkrj.com1.z0.glb.clouddn.com/JVM导图.jpg">
   
     <link rel="alternative" href="/atom.xml" title="伈情的博客" type="application/atom+xml">
   
@@ -80,9 +126,7 @@
   </div>
 </header>
     <div class="outer">
-      <section id="main">
-  
-    <article id="post-JVM调优" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-JVM调优" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/03/JVM调优/" class="article-date">
   <time datetime="2017-03-21T10:28:06.000Z" itemprop="datePublished">2017-03-21</time>
@@ -97,8 +141,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/JVM调优/">JVM调优</a>
+    <h1 class="article-title" itemprop="name">
+      JVM调优
     </h1>
   
 
@@ -217,438 +261,24 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Dubbo性能调优" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/02/Dubbo性能调优/" class="article-date">
-  <time datetime="2017-02-24T10:28:06.000Z" itemprop="datePublished">2017-02-24</time>
-  <!-- 不算子计数器 -->
-  <!-- <span id="busuanzi_container_site_pv"> | Views: [<span id="busuanzi_value_page_pv"></span>]</span> -->
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/Dubbo性能调优/">Dubbo性能调优</a>
-    </h1>
+    <a href="/2017/02/Dubbo性能调优/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Dubbo性能调优</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><h3 id="dubbo序列化-netty"><a href="#dubbo序列化-netty" class="headerlink" title="dubbo序列化+netty"></a>dubbo序列化+netty</h3><p>目前客户端数据接口的场景99%为1k数据量以内，根据各种协议性能测试对比分析，选用dubbo序列化与netty传输方式可达到性能最大化，以下为阿里官方给出的性能测试结果，提供参考：</p>
-<p>1k string 场景：</p>
-<p><img src="http://7xtkrj.com1.z0.glb.clouddn.com/Dubbo-1k.png" alt="image"></p>
-        
-          <p class="article-more-link">
-            <a href="/2017/02/Dubbo性能调优/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://nickid.cn/2017/02/Dubbo性能调优/" data-id="cj0jjide80001ogpsaq05qoml" class="article-share-link" data-share="baidu" data-title="Dubbo性能调优">分享到</a>
-      
-
-      
-        <a href="http://nickid.cn/2017/02/Dubbo性能调优/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dubbo/">Dubbo</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
 
-  
-    <article id="post-Javassist动态编程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/02/Javassist动态编程/" class="article-date">
-  <time datetime="2017-02-23T06:28:06.000Z" itemprop="datePublished">2017-02-23</time>
-  <!-- 不算子计数器 -->
-  <!-- <span id="busuanzi_container_site_pv"> | Views: [<span id="busuanzi_value_page_pv"></span>]</span> -->
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/Javassist动态编程/">Javassist动态编程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Javassist是一个开源的分析、编辑和创建Java字节码的类库。是由东京工业大学的数学和计算机科学系的 Shigeru Chiba （千叶 滋）所创建的。它已加入了开放源代码JBoss 应用服务器项目,通过使用Javassist对字节码操作为JBoss实现动态”AOP”框架。</p>
-</blockquote>
-        
-          <p class="article-more-link">
-            <a href="/2017/02/Javassist动态编程/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://nickid.cn/2017/02/Javassist动态编程/" data-id="cj0jjidej0005ogps7hc5cyh2" class="article-share-link" data-share="baidu" data-title="Javassist动态编程">分享到</a>
-      
-
-      
-        <a href="http://nickid.cn/2017/02/Javassist动态编程/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习总结/">学习总结</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Dubbo架构分析" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/Dubbo架构分析/" class="article-date">
-  <time datetime="2017-01-23T06:28:06.000Z" itemprop="datePublished">2017-01-23</time>
-  <!-- 不算子计数器 -->
-  <!-- <span id="busuanzi_container_site_pv"> | Views: [<span id="busuanzi_value_page_pv"></span>]</span> -->
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/Dubbo架构分析/">Dubbo架构分析</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Dubbo是阿里巴巴服务化治理的核心框架，并被广泛应用于阿里巴巴集团的各成员站点，致力于提供高性能和透明化的RPC远程服务调用方案，以及SOA服务治理方案，它最大的特点是按照分层的方式来架构，使用这种方式可以使各个层之间解耦合（或者最大限度地松耦合）。从服务模型的角度来看，Dubbo采用的是一种非常简单的模型，要么是提供方提供服务，要么是消费方消费服务，所以基于这一点可以抽象出服务提供方（Provider）和服务消费方（Consumer）两个角色。</p>
-</blockquote>
-        
-          <p class="article-more-link">
-            <a href="/2017/01/Dubbo架构分析/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://nickid.cn/2017/01/Dubbo架构分析/" data-id="cj0jjiden0006ogpst6myenuj" class="article-share-link" data-share="baidu" data-title="Dubbo架构分析">分享到</a>
-      
-
-      
-        <a href="http://nickid.cn/2017/01/Dubbo架构分析/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dubbo/">Dubbo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Dubbo线程分析" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/Dubbo线程分析/" class="article-date">
-  <time datetime="2016-08-26T06:25:29.000Z" itemprop="datePublished">2016-08-26</time>
-  <!-- 不算子计数器 -->
-  <!-- <span id="busuanzi_container_site_pv"> | Views: [<span id="busuanzi_value_page_pv"></span>]</span> -->
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/Dubbo线程分析/">Dubbo线程分析</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Dubbo-线程分析"><a href="#Dubbo-线程分析" class="headerlink" title="Dubbo 线程分析"></a>Dubbo 线程分析</h2><blockquote>
-<ul>
-<li>Dubbo provider应用初始化及启动加载</li>
-<li>Dubbo provider的线程模型分析
-        
-          <p class="article-more-link">
-            <a href="/2016/08/Dubbo线程分析/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://nickid.cn/2016/08/Dubbo线程分析/" data-id="cj0jjided0003ogpspoznf9gj" class="article-share-link" data-share="baidu" data-title="Dubbo线程分析">分享到</a>
-      
-
-      
-        <a href="http://nickid.cn/2016/08/Dubbo线程分析/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dubbo/">Dubbo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hongbao" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/hongbao/" class="article-date">
-  <time datetime="2016-07-30T10:19:20.000Z" itemprop="datePublished">2016-07-30</time>
-  <!-- 不算子计数器 -->
-  <!-- <span id="busuanzi_container_site_pv"> | Views: [<span id="busuanzi_value_page_pv"></span>]</span> -->
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/hongbao/">中国移动517活动架构设计</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p><img src="http://7xtkrj.com1.z0.glb.clouddn.com/517%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.png" alt="架构图"><br>
-        
-          <p class="article-more-link">
-            <a href="/2016/07/hongbao/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://nickid.cn/2016/07/hongbao/" data-id="cj0jjidey000fogpsxbw8w2wy" class="article-share-link" data-share="baidu" data-title="中国移动517活动架构设计">分享到</a>
-      
-
-      
-        <a href="http://nickid.cn/2016/07/hongbao/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/架构设计/">架构设计</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-super-diamond配置管理中心-Docker" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/06/super-diamond配置管理中心-Docker/" class="article-date">
-  <time datetime="2016-06-15T06:33:35.000Z" itemprop="datePublished">2016-06-15</time>
-  <!-- 不算子计数器 -->
-  <!-- <span id="busuanzi_container_site_pv"> | Views: [<span id="busuanzi_value_page_pv"></span>]</span> -->
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/super-diamond配置管理中心-Docker/">super-diamond配置管理中心+Docker</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="super-diamond"><a href="#super-diamond" class="headerlink" title="super-diamond"></a>super-diamond</h2><ul>
-<li>配置管理系统提供系统参数配置管理，例如数据库的配置信息等，配置参数修改以后可以实时推送到客户端(基于netty4)，<br>方便系统动态修改运行参数。</li>
-<li>可以建多个项目，每个项目分为三种profile（development、test、production）， 能够控制profile 级别的权限。</li>
-<li>所有参数均由development profile配置，test和production profile继承development profile配置，也可以覆盖其配置。<br>test和production profile只提供修改功能。</li>
-<li>client 备份配置信息到本地文件系统，如果server不可用，可以使用本地备份。client 能够定时重连server，保证client高可用。</li>
-<li>client 提供ConfigurationListener，当某个属性发生变化（add、update、clear）, ConfigurationListener能够接收到ConfigurationEvent。</li>
-<li>server 备份配置文件系统系统，如果数据库不用，能够保证对客户端提供数据（待完善）。</li>
-<li>支持php项目从superdiamond中获取配置参数。
-        
-          <p class="article-more-link">
-            <a href="/2016/06/super-diamond配置管理中心-Docker/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://nickid.cn/2016/06/super-diamond配置管理中心-Docker/" data-id="cj0jjidfq000nogps1w0cf393" class="article-share-link" data-share="baidu" data-title="super-diamond配置管理中心+Docker">分享到</a>
-      
-
-      
-        <a href="http://nickid.cn/2016/06/super-diamond配置管理中心-Docker/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/架构设计/">架构设计</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-订单ID设计" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/06/订单ID设计/" class="article-date">
-  <time datetime="2016-06-14T02:50:16.000Z" itemprop="datePublished">2016-06-14</time>
-  <!-- 不算子计数器 -->
-  <!-- <span id="busuanzi_container_site_pv"> | Views: [<span id="busuanzi_value_page_pv"></span>]</span> -->
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/订单ID设计/">订单ID设计</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="订单ID生成规则设计"><a href="#订单ID生成规则设计" class="headerlink" title="订单ID生成规则设计"></a>订单ID生成规则设计</h2><p>&lt;订单ID生成工具类&gt;<br>&lt;订单ID生成算法：包含属性与每个属性固定的二进制位数为：unix时间戳占用39bit+订单版本号2bit+分库5bit+分表5bit+机器号6bit+自增序号6bit=63bit&gt;</p>
-<p><unix时间戳为满足订单号为long型，二进制位为定长39bit，且生成订单号长度固定为19位，因此经过计算得出时间区间为：历史时间：1191474093056 → 2007-10-4 13:01:33，系统上线时间：1466352000000 → 2016-6-20 00:00:00，最大支撑时间：2016107813887 → 2033-11-20 21:56:53，可支撑时间为：2033年-2016年=17年><br>unix时间戳区间如下：<br>    {<br>        100000000000000000000000000000000000000<br>        274877906944<br>        111111111111111111111111111111111111111<br>        549755813887<br>    }<br>历史时间与系统最大支撑时间计算公式：<br>历史时间=系统上线时间-274877906944<br>最大支撑时间=系统上线时间+549755813887<br>
-        
-          <p class="article-more-link">
-            <a href="/2016/06/订单ID设计/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://nickid.cn/2016/06/订单ID设计/" data-id="cj0jjidev000aogps75e7zslc" class="article-share-link" data-share="baidu" data-title="订单ID设计">分享到</a>
-      
-
-      
-        <a href="http://nickid.cn/2016/06/订单ID设计/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法设计/">算法设计</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/06/hello-world/" class="article-date">
-  <time datetime="2016-06-05T21:56:06.000Z" itemprop="datePublished">2016-06-06</time>
-  <!-- 不算子计数器 -->
-  <!-- <span id="busuanzi_container_site_pv"> | Views: [<span id="busuanzi_value_page_pv"></span>]</span> -->
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-<h3 id="Generate-and-deploy-to-remote-sites"><a href="#Generate-and-deploy-to-remote-sites" class="headerlink" title="Generate and deploy to remote sites"></a>Generate and deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g <span class="_">-d</span></div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://nickid.cn/2016/06/hello-world/" data-id="cj0jjidex000cogps2coicwso" class="article-share-link" data-share="baidu" data-title="Hello World">分享到</a>
-      
-
-      
-        <a href="http://nickid.cn/2016/06/hello-world/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2017/03/JVM调优/" data-title="JVM调优" data-url="http://nickid.cn/2017/03/JVM调优/"></div>
+  </section>
 </section>
       
       <aside id="sidebar">
